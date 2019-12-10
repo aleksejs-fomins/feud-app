@@ -1,0 +1,42 @@
+{
+  "Question 1": {
+  "Title": "What is the key ingredient to understanding the brain?",
+  "Answers": ["A brain", "Patience", "Mice", "Calcium"],
+  "Values" : [13, 6, 2, 2]
+  },
+  "Question 2": {
+  "Title": "Who is the best dancer at HIFO?",
+  "Answers": ["Daniel Gonzalez", "Chris Lewis", "Sebastian Jessberger", "Isabelle Mansuy", "Khadeesh"],
+  "Values" : [12, 6, 2, 2, 2]
+  },
+  "Question 3": {
+  "Title": "Which is the most visited website at HIFO?",
+  "Answers": ["Google", "Intranet", "Facebook", "PubMed", "Wikipedia", "UZH Webmail", "Google Scholoar", "YouTube"],
+  "Values" : [8, 8, 4, 4, 3, 3, 2, 2]
+  },
+  "Question 4": {
+  "Title": "What is your favorite brain structure?",
+  "Answers": ["Hippocampus", "Striatum/SN", "Cerebellum", "PFC", "Dentate Gyrus", "Cortex", "Amygdala"],
+  "Values" : [10, 4, 4, 3, 3, 2, 2]
+  },
+  "Question 5": {
+  "Title": "What is the most boring brain structure?",
+  "Answers": ["Barrel Cortex", "Olfactory bulb", "Cortex", "Cerebellum", "Thalamus", "Visual Cortex (V1)"],
+  "Values" : [7, 5, 5, 4, 3, 3]
+  },
+  "Question 6": {
+  "Title": "Which body part would you rather lose?",
+  "Answers": ["Toe (Pinky)", "Hair", "None", "Appendix", "Finger (Pinky)", "Fat", "Kidney"],
+  "Values" : [9, 7, 6, 4, 3, 3, 3]
+  },
+  "Question 7": {
+  "Title": "How many people in the institute do you think understand your work?",
+  "Answers": ["0", "1 (Myself)", "3", "4", "5", "7", "50", "Everyone/100%"],
+  "Values" : [4,4,4,4,4,4,3,3]
+  },
+  "Question 8": {
+  "Title": "When I have a problem, I...",
+  "Answers": ["Solve it", "Cry", "Drink", "Look for people / Ask"],
+  "Values" : [8,3,3,3]
+  }
+}
