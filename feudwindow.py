@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'feudwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -404,6 +404,28 @@ class Ui_FeudWindow(object):
         self.answersTableWidget.setHorizontalHeaderItem(2, item)
         self.verticalLayout.addWidget(self.answersTableWidget)
         self.mainTabWidget.addTab(self.questionsTab, "")
+        self.correctionsTab = QtWidgets.QWidget()
+        self.correctionsTab.setObjectName("correctionsTab")
+        self.gridLayout = QtWidgets.QGridLayout(self.correctionsTab)
+        self.gridLayout.setContentsMargins(11, 11, 11, 11)
+        self.gridLayout.setSpacing(6)
+        self.gridLayout.setObjectName("gridLayout")
+        self.corrAnswerIdxLineEdit = QtWidgets.QLineEdit(self.correctionsTab)
+        self.corrAnswerIdxLineEdit.setObjectName("corrAnswerIdxLineEdit")
+        self.gridLayout.addWidget(self.corrAnswerIdxLineEdit, 1, 1, 1, 1)
+        self.corrQuestionIdxLabel = QtWidgets.QLabel(self.correctionsTab)
+        self.corrQuestionIdxLabel.setObjectName("corrQuestionIdxLabel")
+        self.gridLayout.addWidget(self.corrQuestionIdxLabel, 0, 0, 1, 1)
+        self.corrAnswerIdxLabel = QtWidgets.QLabel(self.correctionsTab)
+        self.corrAnswerIdxLabel.setObjectName("corrAnswerIdxLabel")
+        self.gridLayout.addWidget(self.corrAnswerIdxLabel, 1, 0, 1, 1)
+        self.corrClearButton = QtWidgets.QPushButton(self.correctionsTab)
+        self.corrClearButton.setObjectName("corrClearButton")
+        self.gridLayout.addWidget(self.corrClearButton, 2, 1, 1, 1)
+        self.corrQuestionComboBox = QtWidgets.QComboBox(self.correctionsTab)
+        self.corrQuestionComboBox.setObjectName("corrQuestionComboBox")
+        self.gridLayout.addWidget(self.corrQuestionComboBox, 0, 1, 1, 1)
+        self.mainTabWidget.addTab(self.correctionsTab, "")
         self.horizontalLayout.addWidget(self.mainTabWidget)
         FeudWindow.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(FeudWindow)
@@ -418,7 +440,7 @@ class Ui_FeudWindow(object):
         FeudWindow.setStatusBar(self.statusBar)
 
         self.retranslateUi(FeudWindow)
-        self.mainTabWidget.setCurrentIndex(2)
+        self.mainTabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(FeudWindow)
 
     def retranslateUi(self, FeudWindow):
@@ -451,4 +473,8 @@ class Ui_FeudWindow(object):
         item = self.answersTableWidget.horizontalHeaderItem(2)
         item.setText(_translate("FeudWindow", "Points"))
         self.mainTabWidget.setTabText(self.mainTabWidget.indexOf(self.questionsTab), _translate("FeudWindow", "Questions"))
+        self.corrQuestionIdxLabel.setText(_translate("FeudWindow", "Question Idx"))
+        self.corrAnswerIdxLabel.setText(_translate("FeudWindow", "Answer Idx"))
+        self.corrClearButton.setText(_translate("FeudWindow", "Clear"))
+        self.mainTabWidget.setTabText(self.mainTabWidget.indexOf(self.correctionsTab), _translate("FeudWindow", "Corrections"))
 

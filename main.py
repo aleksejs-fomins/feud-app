@@ -1,6 +1,6 @@
 '''
 [+] Remove main music
-[] Redo emote music with QSound
+[-] Redo emote music with QSound
   [+] Allow disable music
 [+] Rank Questions
 [+] Filter :: Except Lowercase
@@ -8,8 +8,9 @@
 [+] Filter :: Force at least 3 letters
 [+] Add reveal button
   [+] Ensure it is counted as answered, but by neither team
-[] Beta-test
-[] Undo button
+[+] Beta-test
+[+] Correction button
+[+] Replace table filling with ext class
 '''
 
 ###############################
@@ -21,9 +22,9 @@ import numpy as np
 #from playsound import playsound
 from pydub import AudioSegment
 from pydub.playback import play
+from qthelper import qtable_addrow, qtable_setrowval, qcombo_fill, qtable_setrowcolor, qtable_setcolcolor
 
-
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtGui, QtCore, QtWidgets, QtMultimedia
 
 #######################################
 # Compile QT File
@@ -103,33 +104,27 @@ class FamilyFeudGui():
         self.gui.statsTableWidget.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         self.gui.statsTableWidget.setRowCount(0)
         for iRow, questionKey in enumerate(self.questiondata.keys()):
-            self.gui.statsTableWidget.insertRow(iRow)
-            self.gui.statsTableWidget.setItem(iRow, 0, QtWidgets.QTableWidgetItem(str(questionKey)))
-            for iTeam in range(self.nTeams):
-                self.gui.statsTableWidget.setItem(iRow, iTeam+1, QtWidgets.QTableWidgetItem(""))
-        self.gui.statsTableWidget.insertRow(self.nTotalQuestions)
-        self.gui.statsTableWidget.setItem(self.nTotalQuestions, 0, QtWidgets.QTableWidgetItem("Total Score"))
-        for iTeam in range(self.nTeams):
-            self.gui.statsTableWidget.setItem(self.nTotalQuestions, iTeam + 1, QtWidgets.QTableWidgetItem(""))
+            qtable_addrow(self.gui.statsTableWidget, iRow, [questionKey] + [""]*self.nTeams)
+        qtable_addrow(self.gui.statsTableWidget, self.nTotalQuestions, ["Total Score"] + [""] * self.nTeams)
 
         # Init Answers Table
         self.gui.answersTableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         self.gui.answersTableWidget.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
 
         # Fill in Question Combo Box
-        self.gui.questionsComboBox.clear()
-        #self.gui.questionsComboBox.addItem("---Select Question----")
-        for questionKey in self.questiondata.keys():
-            self.gui.questionsComboBox.addItem(questionKey)
+        qcombo_fill(self.gui.questionsComboBox, self.questiondata.keys())
+        qcombo_fill(self.gui.corrQuestionComboBox, self.questiondata.keys())
         self.reactQuestionSelect()
 
         # Listeners - UI
         self.gui.questionsComboBox.currentIndexChanged.connect(self.reactQuestionSelect)
         self.gui.answerPushButton.clicked.connect(self.reactQuestionSubmit)
+        self.gui.corrClearButton.clicked.connect(self.reactClearQuestion)
         self.dialog.keyPressEvent = self.keyPressEvent
         self.updateSystemFontSize()
 
 
+    # Change question text and load corresponding answers table
     def reactQuestionSelect(self):
         #self.playsound(np.random.choice(self.bgsounds))
         questionKey = self.gui.questionsComboBox.currentText()
@@ -174,6 +169,7 @@ class FamilyFeudGui():
             self.playsound(self.sounds['yay'])
 
 
+    # If there are still unanswered questions, mark highest unanswered question as revealed, update tables
     def revealQuestion(self):
         questionKey = self.gui.questionsComboBox.currentText()
         # if questionKey != "---Select Question----":
@@ -188,16 +184,17 @@ class FamilyFeudGui():
             print("No unrevealed answers left")
 
 
-    def setRowColor(self, table, iRow, color):
-        for iCol in range(table.columnCount()):
-            #print(iRow, iCol)
-            table.item(iRow, iCol).setBackground(color)
+    # Mark question as unanswered, update tables accordingly
+    def reactClearQuestion(self):
+        # Update answer
+        answerIdx = int(self.gui.corrAnswerIdxLineEdit.text())
+        questionKey = self.gui.corrQuestionComboBox.currentText()
+        print("Clearing", questionKey, "answer", answerIdx)
+        self.teamThatAnswered[questionKey][answerIdx] = "None"
 
-
-    def setColColor(self, table, iCol, color):
-        for iRow in range(table.rowCount()):
-            #print(iRow, iCol)
-            table.item(iRow, iCol).setBackground(color)
+        # React
+        self.updateAnswersTable(questionKey)
+        self.updateStatsTable()
 
 
     # Reload answers table from scratch, marking only questions that have already been answered
@@ -212,12 +209,15 @@ class FamilyFeudGui():
         for iRow, teamAnsweredThisQuestion in enumerate(thisQTeams):
             self.gui.answersTableWidget.insertRow(iRow)
             if teamAnsweredThisQuestion != "None":
-                self.gui.answersTableWidget.setItem(iRow, 0, QtWidgets.QTableWidgetItem(thisQAnswers[iRow]))
-                self.gui.answersTableWidget.setItem(iRow, 1, QtWidgets.QTableWidgetItem(str(thisQValues[iRow])))
-                self.gui.answersTableWidget.setItem(iRow, 2, QtWidgets.QTableWidgetItem(str(thisQScores[iRow])))
+                rowValues = [thisQAnswers[iRow], thisQValues[iRow], thisQScores[iRow]]
+                qtable_setrowval(self.gui.answersTableWidget, iRow, rowValues)
                 if teamAnsweredThisQuestion != "Revealed":
                     teamColor = self.teamName2color[teamAnsweredThisQuestion]
-                    self.setRowColor(self.gui.answersTableWidget, iRow, teamColor)
+                    qtable_setrowcolor(self.gui.answersTableWidget, iRow, teamColor)
+            else:
+                # Ensure that the row is empty in case it was cleared
+                qtable_setrowval(self.gui.answersTableWidget, iRow, [""] * 3)
+                qtable_setrowcolor(self.gui.answersTableWidget, iRow, QtGui.QColor(255, 255, 255))
 
 
     # Calculate number of points for each team for each question and total
@@ -242,7 +242,7 @@ class FamilyFeudGui():
 
         # Update column colors
         for iCol, teamColor in enumerate(self.teamName2color.values()):
-            self.setColColor(self.gui.statsTableWidget, iCol+1, teamColor)
+            qtable_setcolcolor(self.gui.statsTableWidget, iCol+1, teamColor)
 
 
     # React to key presses
@@ -266,11 +266,17 @@ class FamilyFeudGui():
 
 
     def playsound(self, soundpath):
+        #QtMultimedia.QSound.play(soundpath)
+        # player = QtMultimedia.QMediaPlayer()
+        # player.setMedia(QtMultimedia.QMediaContent(QtCore.QUrl(soundpath)))
+        # player.play()
+
         if self.haveSounds:
             self.thisSoundThread = playSoundThread(soundpath)
             self.thisSoundThread.finished.connect(self.stopsound)
             self.thisSoundThread.start()
             #del self.thisSoundThread
+
 
     def stopsound(self):
         #del self.thisSoundThread

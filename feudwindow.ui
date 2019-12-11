@@ -860,7 +860,7 @@
        </palette>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1032,6 +1032,40 @@
            </property>
           </column>
          </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="correctionsTab">
+       <attribute name="title">
+        <string>Corrections</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="corrAnswerIdxLineEdit"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="corrQuestionIdxLabel">
+          <property name="text">
+           <string>Question Idx</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="corrAnswerIdxLabel">
+          <property name="text">
+           <string>Answer Idx</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="corrClearButton">
+          <property name="text">
+           <string>Clear</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="corrQuestionComboBox"/>
         </item>
        </layout>
       </widget>
