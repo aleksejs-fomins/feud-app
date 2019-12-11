@@ -11,7 +11,7 @@
   },
   "Question 3": {
   "Title": "Which is the most visited website at HIFO?",
-  "Answers": ["Google", "Intranet", "Facebook", "PubMed", "Wikipedia", "UZH Webmail", "Google Scholoar", "YouTube"],
+  "Answers": ["Google", "Intranet", "Facebook", "PubMed", "Wikipedia", "UZH Webmail", "Google Scholar", "YouTube"],
   "Values" : [8, 8, 4, 4, 3, 3, 2, 2]
   },
   "Question 4": {
@@ -31,7 +31,7 @@
   },
   "Question 7": {
   "Title": "How many people in the institute do you think understand your work?",
-  "Answers": ["0", "1 (Myself)", "3", "4", "5", "7", "50", "Everyone/100%"],
+  "Answers": ["0", "1 (Myself)", "3", "4", "5", "7", "50", "Everyone"],
   "Values" : [4,4,4,4,4,4,3,3]
   },
   "Question 8": {
