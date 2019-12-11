@@ -67,6 +67,8 @@ class FamilyFeudGui():
         #self.gui.logoLabel.setGeometry(0,0, screenRes.width()*0.8, screenRes.height()*0.8)
         #self.gui.answersLayout.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
         #self.gui.answerLabel.setMargin(0)
+        self.gui.answerLabel.setMargin(screenRes.width()*0.03)
+
 
         # GUI-Constants
         self.fontsize = 25
@@ -95,9 +97,6 @@ class FamilyFeudGui():
             "Team Red" : QtGui.QColor(247, 146, 156),
             "Team Blue" : QtGui.QColor(146, 175, 247)}
         self.nTeams = len(self.teamName2color)
-
-        # Init answer
-        self.gui.answerLabel.setMargin(200)
 
         # Fill in Stats Table
         self.gui.statsTableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
