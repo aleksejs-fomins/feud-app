@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'feudwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_FeudWindow(object):
     def setupUi(self, FeudWindow):
         FeudWindow.setObjectName("FeudWindow")
-        FeudWindow.resize(1199, 933)
+        FeudWindow.resize(1636, 1029)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -370,10 +370,11 @@ class Ui_FeudWindow(object):
         self.horizontalLayout_3.addWidget(self.answerPushButton)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.answersLayout = QtWidgets.QVBoxLayout()
+        self.answersLayout.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
         self.answersLayout.setSpacing(6)
         self.answersLayout.setObjectName("answersLayout")
         self.answerLabel = QtWidgets.QLabel(self.questionsTab)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.answerLabel.sizePolicy().hasHeightForWidth())
@@ -382,7 +383,11 @@ class Ui_FeudWindow(object):
         font = QtGui.QFont()
         font.setPointSize(30)
         self.answerLabel.setFont(font)
+        self.answerLabel.setTextFormat(QtCore.Qt.AutoText)
+        self.answerLabel.setScaledContents(False)
         self.answerLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.answerLabel.setWordWrap(True)
+        self.answerLabel.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.answerLabel.setObjectName("answerLabel")
         self.answersLayout.addWidget(self.answerLabel)
         self.answersTableWidget = QtWidgets.QTableWidget(self.questionsTab)
@@ -409,7 +414,7 @@ class Ui_FeudWindow(object):
         self.horizontalLayout.addWidget(self.mainTabWidget)
         FeudWindow.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(FeudWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1199, 29))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1636, 22))
         self.menuBar.setObjectName("menuBar")
         FeudWindow.setMenuBar(self.menuBar)
         self.mainToolBar = QtWidgets.QToolBar(FeudWindow)

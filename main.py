@@ -65,7 +65,7 @@ class FamilyFeudGui():
         # Adjust window size to display
         screenRes = QtWidgets.QDesktopWidget().screenGeometry()
         #self.gui.logoLabel.setGeometry(0,0, screenRes.width()*0.8, screenRes.height()*0.8)
-        #self.gui.label.setGeometry(0,0, 100, 100)
+        self.gui.answersLayout.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
         #self.gui.answerLabel.setMargin(0)
 
         # GUI-Constants
@@ -119,9 +119,10 @@ class FamilyFeudGui():
 
         # Fill in Question Combo Box
         self.gui.questionsComboBox.clear()
-        self.gui.questionsComboBox.addItem("---Select Question----")
+        #self.gui.questionsComboBox.addItem("---Select Question----")
         for questionKey in self.questiondata.keys():
             self.gui.questionsComboBox.addItem(questionKey)
+        self.reactQuestionSelect()
 
         # Listeners - UI
         self.gui.questionsComboBox.currentIndexChanged.connect(self.reactQuestionSelect)
@@ -176,16 +177,16 @@ class FamilyFeudGui():
 
     def revealQuestion(self):
         questionKey = self.gui.questionsComboBox.currentText()
-        if questionKey != "---Select Question----":
-            thisQTeams = self.teamThatAnswered[questionKey]
-            isUnrevealed = np.array([teamAnswered == "None" for teamAnswered in thisQTeams])
-            if np.any(isUnrevealed):
-                answerIdx = np.where(isUnrevealed)[0][0]
-                self.teamThatAnswered[questionKey][answerIdx] = "Revealed"
-                print("Revealing answer", answerIdx, "for", questionKey)
-                self.updateAnswersTable(questionKey)
-            else:
-                print("No unrevealed answers left")
+        # if questionKey != "---Select Question----":
+        thisQTeams = self.teamThatAnswered[questionKey]
+        isUnrevealed = np.array([teamAnswered == "None" for teamAnswered in thisQTeams])
+        if np.any(isUnrevealed):
+            answerIdx = np.where(isUnrevealed)[0][0]
+            self.teamThatAnswered[questionKey][answerIdx] = "Revealed"
+            print("Revealing answer", answerIdx, "for", questionKey)
+            self.updateAnswersTable(questionKey)
+        else:
+            print("No unrevealed answers left")
 
 
     def setRowColor(self, table, iRow, color):

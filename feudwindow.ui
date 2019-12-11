@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1199</width>
-    <height>933</height>
+    <width>1636</width>
+    <height>1029</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -972,10 +972,13 @@
         </item>
         <item>
          <layout class="QVBoxLayout" name="answersLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
           <item>
            <widget class="QLabel" name="answerLabel">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -994,6 +997,12 @@
             <property name="text">
              <string>Next Question Will Appear Here</string>
             </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
@@ -1002,6 +1011,9 @@
             </property>
             <property name="margin">
              <number>10</number>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
             </property>
            </widget>
           </item>
@@ -1055,8 +1067,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1199</width>
-     <height>29</height>
+     <width>1636</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
