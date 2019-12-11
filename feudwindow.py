@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'feudwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_FeudWindow(object):
     def setupUi(self, FeudWindow):
         FeudWindow.setObjectName("FeudWindow")
-        FeudWindow.resize(1636, 1029)
+        FeudWindow.resize(1636, 1050)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -379,7 +379,7 @@ class Ui_FeudWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.answerLabel.sizePolicy().hasHeightForWidth())
         self.answerLabel.setSizePolicy(sizePolicy)
-        self.answerLabel.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.answerLabel.setMaximumSize(QtCore.QSize(16777215, 16777215))
         font = QtGui.QFont()
         font.setPointSize(30)
         self.answerLabel.setFont(font)
@@ -414,7 +414,7 @@ class Ui_FeudWindow(object):
         self.horizontalLayout.addWidget(self.mainTabWidget)
         FeudWindow.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(FeudWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1636, 22))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1636, 29))
         self.menuBar.setObjectName("menuBar")
         FeudWindow.setMenuBar(self.menuBar)
         self.mainToolBar = QtWidgets.QToolBar(FeudWindow)

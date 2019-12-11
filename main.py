@@ -65,7 +65,7 @@ class FamilyFeudGui():
         # Adjust window size to display
         screenRes = QtWidgets.QDesktopWidget().screenGeometry()
         #self.gui.logoLabel.setGeometry(0,0, screenRes.width()*0.8, screenRes.height()*0.8)
-        self.gui.answersLayout.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
+        #self.gui.answersLayout.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
         #self.gui.answerLabel.setMargin(0)
 
         # GUI-Constants
