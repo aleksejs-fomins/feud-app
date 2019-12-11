@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
-    <height>1437</height>
+    <width>1000</width>
+    <height>700</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="palette">
    <palette>
@@ -429,6 +435,12 @@
    <string>FeudWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QTabWidget" name="mainTabWidget">
@@ -848,7 +860,7 @@
        </palette>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -859,8 +871,8 @@
          <rect>
           <x>120</x>
           <y>30</y>
-          <width>1811</width>
-          <height>1141</height>
+          <width>600</width>
+          <height>400</height>
          </rect>
         </property>
         <property name="text">
@@ -966,6 +978,18 @@
          <layout class="QVBoxLayout" name="answersLayout">
           <item>
            <widget class="QLabel" name="answerLabel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>30</pointsize>
@@ -978,12 +1002,24 @@
              <set>Qt::AlignCenter</set>
             </property>
             <property name="margin">
-             <number>50</number>
+             <number>10</number>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QTableWidget" name="answersTableWidget">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>600</height>
+             </size>
+            </property>
             <property name="editTriggers">
              <set>QAbstractItemView::NoEditTriggers</set>
             </property>
@@ -1020,8 +1056,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1920</width>
-     <height>29</height>
+     <width>1000</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
