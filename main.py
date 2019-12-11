@@ -63,8 +63,10 @@ class FamilyFeudGui():
         self.gui.setupUi(dialog)
 
         # Adjust window size to display
+        screenRes = QtWidgets.QDesktopWidget().screenGeometry()
+        #self.gui.logoLabel.setGeometry(0,0, screenRes.width()*0.8, screenRes.height()*0.8)
         #self.gui.label.setGeometry(0,0, 100, 100)
-        self.gui.answerLabel.setMargin(0--)
+        #self.gui.answerLabel.setMargin(0)
 
         # GUI-Constants
         self.fontsize = 25
@@ -295,8 +297,8 @@ class playSoundThread(QtCore.QThread):
 if __name__ == '__main__' :
     app = QtWidgets.QApplication(sys.argv)
     mainwindow = QtWidgets.QMainWindow()
-    rec = QtWidgets.QDesktopWidget().screenGeometry()
-    mainwindow.setFixedSize(rec.width(), rec.height())
+    screenRes = QtWidgets.QDesktopWidget().screenGeometry()
+    mainwindow.setFixedSize(screenRes.width(), screenRes.height())
     locale.setlocale(locale.LC_TIME, "en_GB.utf8")
     pth1 = FamilyFeudGui(mainwindow)
     mainwindow.show()
